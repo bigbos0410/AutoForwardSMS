@@ -15,13 +15,14 @@
     <string name="test_tele_connect">Test Telegram connection</string>
     <string name="invalid_phone_number_error">Invalid phone number, not save.</string>
     <string name="saved">Saved</string>
+    <string name="how_to_connect_tele">How to connect with Telegram?</string>
 
     <string name="guide_1">Step 1. Find @BotFather on Telegram</string>
     <string name="guide_2">Step 2. Chat /start</string>
     <string name="guide_3">Step 3. Chat /newbot</string>
     <string name="guide_4">Step 4. Enter your chat bot name. Eg: ForwardSMS</string>
-    <string name="guide_5">Step 5. Enter your chat bot id must end with bot. Eg: forward_sms_bot</string>
+    <string name="guide_5">Step 5. Enter your chat bot id (must end with \'bot\'). Eg: forward_sms_bot</string>
     <string name="guide_6">Step 6. Chat a message with your new bot. You can chat anything</string>
-    <string name="guide_7">Step 7. Enter token access of your bot provide by BotFather to TOKEN field of this app</string>
+    <string name="guide_7">Step 7. Enter token access of your bot provide by @BotFather to TOKEN field of this app</string>
     <string name="guide_8">Step 8. Test connection and enjoy!</string>
 </resources>

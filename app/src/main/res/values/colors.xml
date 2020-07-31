@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#09af00</color>
-    <color name="colorPrimaryDark">#008b00</color>
-    <color name="colorAccent">#09af00</color>
+    <color name="colorPrimary">#FFA000</color>
+    <color name="colorPrimaryDark">#F57F17</color>
+    <color name="colorAccent">#F9A825</color>
 
     <color name="header_2">#CC000000</color>
-    <color name="button_green">#09af00</color>
+    <color name="button_green">#F9A825</color>
 
-    <color name="bubble_chat">#9FF89A</color>
+    <color name="bubble_chat">#FBC02D</color>
 </resources>

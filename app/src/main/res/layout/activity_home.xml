@@ -18,193 +18,198 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-
-        <TextView
-            android:id="@+id/tv_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/setting"
-            android:textSize="@dimen/text_size_header_large"
-            android:textColor="#CC000000"
-            android:padding="@dimen/padding"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/ll_tele"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding"
+            android:layout_height="match_parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/tv_setting"
-            android:background="@drawable/layout_border">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/setting"
+                    android:textSize="@dimen/text_size_header_large"
+                    android:textColor="@color/header_2"
+                    android:padding="@dimen/padding"/>
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
+                    android:id="@+id/ll_tele"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:padding="@dimen/padding"
+                    android:orientation="vertical"
+                    android:background="@drawable/layout_border">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/header_2"
-                        android:text="@string/send_to_telegram"
-                        android:textSize="@dimen/text_size_header_medium"/>
+                        android:orientation="horizontal"
+                        android:weightSum="3">
 
-                    <TextView
-                        android:id="@+id/tele_connect_guide"
-                        android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/header_2"
+                                android:text="@string/send_to_telegram"
+                                android:textSize="@dimen/text_size_header_medium"/>
+
+                            <TextView
+                                android:id="@+id/tele_connect_guide"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/colorPrimary"
+                                android:text="@string/how_to_connect_tele"
+                                android:onClick="connectTeleGuide"
+                                android:textSize="@dimen/text_size_content_medium"/>
+                        </LinearLayout>
+
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/sw_tele"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_token"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
-                        android:text="How to connect with Telegram?"
-                        android:onClick="connectTeleGuide"
-                        android:textSize="@dimen/text_size_content_medium"/>
+                        app:boxStrokeColor="@color/colorPrimary"
+                        android:layout_marginTop="@dimen/space_element"
+                        app:boxStrokeWidth="0.5dp"
+                        android:hint="@string/token"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_edit"
+                        app:helperTextTextColor="@color/colorPrimary"
+                        app:errorEnabled="true"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_token"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_element"
+                        app:boxStrokeWidth="0.5dp"
+                        app:boxStrokeWidthFocused="1dp"
+                        android:hint="@string/chat_id"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_chat_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:focusable="false"
+                            android:inputType="number"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btn_text_to_telegram"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/telegram_ico"
+                        app:iconTint="@null"
+                        android:layout_marginTop="@dimen/space_element"
+                        android:layout_marginStart="@dimen/padding"
+                        android:layout_marginEnd="@dimen/padding"
+                        android:padding="@dimen/space_element"
+                        android:text="@string/test_tele_connect"
+                        android:textSize="@dimen/text_size_button"
+                        app:strokeColor="@color/button_green"
+                        app:iconGravity="textEnd"
+                        app:iconSize="24dp"
+                        android:onClick="testTelegramConnect"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
+
                 </LinearLayout>
-
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/sw_tele"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edl_token"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxStrokeColor="@color/colorPrimary"
-                android:layout_marginTop="@dimen/space_element"
-                app:boxStrokeWidth="0.5dp"
-                android:hint="@string/token"
-                app:endIconMode="custom"
-                app:endIconDrawable="@drawable/ic_edit"
-                app:helperTextTextColor="@color/colorPrimary"
-                app:errorEnabled="true"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_token"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_element"
-                app:boxStrokeWidth="0.5dp"
-                app:boxStrokeWidthFocused="1dp"
-                android:hint="@string/chat_id"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_chat_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:inputType="number"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btn_text_to_telegram"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                app:icon="@drawable/telegram_ico"
-                app:iconTint="@null"
-                android:layout_marginTop="@dimen/space_element"
-                android:layout_marginStart="@dimen/padding"
-                android:layout_marginEnd="@dimen/padding"
-                android:padding="@dimen/space_element"
-                android:text="@string/test_tele_connect"
-                android:textSize="@dimen/text_size_button"
-                app:strokeColor="@color/button_green"
-                app:iconGravity="textEnd"
-                app:iconSize="24dp"
-                android:onClick="testTelegramConnect"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/padding"
-            android:padding="@dimen/padding"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/ll_tele"
-            android:background="@drawable/layout_border">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/header_2"
-                        android:text="@string/send_to_phone_number"
-                        android:textSize="@dimen/text_size_header_medium"/>
-
-                    <TextView
-                        android:id="@+id/tv_send_to_phone_option"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_content_medium"/>
-                </LinearLayout>
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/sw_phone"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edl_phone_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_element"
-                app:boxStrokeColor="@color/header_2"
-                app:boxStrokeWidth="0.5dp"
-                app:boxStrokeWidthFocused="1dp"
-                app:endIconMode="custom"
-                app:endIconDrawable="@drawable/ic_edit"
-                android:hint="@string/phone_number"
-                app:helperTextTextColor="@color/colorPrimary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_phone_number"
+                    android:id="@+id/ll_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone" />
+                    android:layout_marginTop="@dimen/padding"
+                    android:padding="@dimen/padding"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/ll_tele"
+                    android:background="@drawable/layout_border">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
 
-        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/header_2"
+                                android:text="@string/send_to_phone_number"
+                                android:textSize="@dimen/text_size_header_medium"/>
+
+                            <TextView
+                                android:id="@+id/tv_send_to_phone_option"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_size_content_medium"/>
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/sw_phone"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edl_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_element"
+                        app:boxStrokeColor="@color/header_2"
+                        app:boxStrokeWidth="0.5dp"
+                        app:boxStrokeWidthFocused="1dp"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_edit"
+                        android:hint="@string/phone_number"
+                        app:helperTextTextColor="@color/colorPrimary"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

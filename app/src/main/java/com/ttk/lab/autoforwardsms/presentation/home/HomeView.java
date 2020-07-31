@@ -107,6 +107,7 @@ public class HomeView extends AppCompatActivity implements IHomeView {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 showError(null);
+                mBinding.edlToken.setHelperTextEnabled(false);
             }
 
             @Override
@@ -148,6 +149,7 @@ public class HomeView extends AppCompatActivity implements IHomeView {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 mBinding.edlPhoneNumber.setErrorEnabled(false);
+                mBinding.edlPhoneNumber.setHelperTextEnabled(false);
             }
 
             @Override
@@ -155,7 +157,7 @@ public class HomeView extends AppCompatActivity implements IHomeView {
 
             }
         });
-        new ForwardSmsAsyncTask(this).execute("haha");
+        //new ForwardSmsAsyncTask(this).execute("haha");
     }
 
     boolean checkPermission () {
@@ -206,6 +208,7 @@ public class HomeView extends AppCompatActivity implements IHomeView {
     public void updateChatID(String chat_id) {
         if (!chat_id.isEmpty()) {
             mBinding.edChatId.setText(chat_id);
+            mBinding.edlToken.setHelperTextEnabled(true);
             mBinding.edlToken.setHelperText(getString(R.string.saved));
             PreferenceHelper.putString(mPreferences, Constants.PREF.TOKEN_PREF, String.valueOf(mBinding.edToken.getText()));
             PreferenceHelper.putString(mPreferences, Constants.PREF.CHAT_ID_PREF, String.valueOf(mBinding.edChatId.getText()));
@@ -242,6 +245,7 @@ public class HomeView extends AppCompatActivity implements IHomeView {
     public void showPhoneValid(boolean isValid) {
         if (isValid) {
             mBinding.edlPhoneNumber.setErrorEnabled(false);
+            mBinding.edlPhoneNumber.setHelperTextEnabled(true);
             mBinding.edlPhoneNumber.setHelperText(getString(R.string.saved));
             PreferenceHelper.putString(mPreferences, Constants.PREF.PHONE_NUMBER_PREF, String.valueOf(mBinding.edPhoneNumber.getText()));
         } else {
@@ -280,7 +284,7 @@ public class HomeView extends AppCompatActivity implements IHomeView {
                     int current_option = mPreferences.getInt(Constants.PREF.PHONE_OPTION, 0);
                     if (option1 != current_option) {
                         PreferenceHelper.putInt(mPreferences, Constants.PREF.PHONE_OPTION, option1);
-                        Toast.makeText(getApplicationContext(), "Saved!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.saved), Toast.LENGTH_LONG).show();
                         updatePhoneOptionUI(option1);
                     }
                 }).setPositiveButton("OK", null);
