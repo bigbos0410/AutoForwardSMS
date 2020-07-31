@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding">24dp</dimen>
+    <dimen name="space_element">12dp</dimen>
+    <dimen name="text_size_header_large">26sp</dimen>
+    <dimen name="text_size_header_medium">20sp</dimen>
+    <dimen name="text_size_header_small">18sp</dimen>
+    <dimen name="text_size_content_medium">14sp</dimen>
+    <dimen name="text_size_button">16sp</dimen>
+    <dimen name="text_size_alert">12sp</dimen>
+</resources>

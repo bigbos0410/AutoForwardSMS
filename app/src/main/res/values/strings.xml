@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Auto Forward SMS</string>
+    <string name="setting">Setting</string>
+    <string name="send_to_telegram">Send to Telegram</string>
+    <string name="token">Token</string>
+    <string name="chat_id">Chat ID</string>
+    <string name="send_to_phone_number">Send to Phone number</string>
+    <string name="always_send_to_phone">Always send to this number.</string>
+    <string name="only_send_if_telegram_not_available">Only send to this number if Telegram not available.</string>
+    <string name="more_option">More option</string>
+    <string name="phone_number">Phone number</string>
+    <string name="hint_token">SFKWFLSDKFJOEIFJLDSFJOWIEFDSKFSJDKFJWE</string>
+    <string name="hint_chat_id">12345321</string>
+    <string name="hint_phone_number">+8412345678</string>
+    <string name="test_tele_connect">Test Telegram connection</string>
+    <string name="invalid_phone_number_error">Invalid phone number, not save.</string>
+    <string name="saved">Saved</string>
+
+    <string name="guide_1">Step 1. Find @BotFather on Telegram</string>
+    <string name="guide_2">Step 2. Chat /start</string>
+    <string name="guide_3">Step 3. Chat /newbot</string>
+    <string name="guide_4">Step 4. Enter your chat bot name. Eg: ForwardSMS</string>
+    <string name="guide_5">Step 5. Enter your chat bot id must end with bot. Eg: forward_sms_bot</string>
+    <string name="guide_6">Step 6. Chat a message with your new bot. You can chat anything</string>
+    <string name="guide_7">Step 7. Enter token access of your bot provide by BotFather to TOKEN field of this app</string>
+    <string name="guide_8">Step 8. Test connection and enjoy!</string>
+</resources>
