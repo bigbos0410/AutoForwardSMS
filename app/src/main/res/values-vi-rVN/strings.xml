@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting">Cài đặt</string>
+    <string name="send_to_telegram">Gửi đến Telegram</string>
+    <string name="send_to_phone_number">Gửi đến SĐT</string>
+    <string name="always_send_to_phone">Luôn gửi đến SĐT này.</string>
+    <string name="only_send_if_telegram_not_available">Chỉ gửi đến SĐT này khi không gửi được qua Telegram.</string>
+    <string name="more_option">Lựa chọn khác</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="test_tele_connect">Thử kết nối với Telegram</string>
+    <string name="invalid_phone_number_error">Số điện thoại không hợp lệ. Chưa lưu thay đổi</string>
+    <string name="saved">Đã lưu</string>
+    <string name="how_to_connect_tele">Kết nối với Telegram như thế nào?</string>
+    <string name="error_token_invalid">Token không hợp lệ</string>
+    <string name="error_internet_connection">Kiểm tra kết nối internet</string>
+    <string name="error_cannot_find_chat_id">Không tìm được ChatID, bạn cần gửi 1 tin nhắn bất kỳ cho bot trước</string>
+    <string name="go_to_setting">Vào Cài đặt</string>
+    <string name="permission_request_failed_noti">"Ứng dụng này cần quyền đọc và gửi tin nhắn. Chúng tôi cam kết tin nhắn SMS của bạn sẽ không được chuyển tiếp tới bất kì đâu ngoài tầm kiểm soát của bạn.
+        \n\nVào Cài đặt > Quyền > Tin nhắn SMS > Cho phép"</string>
+    <string name="alert_sms_enable">Vui lòng đảm bảo thiết bạn có thể gửi tin nhắn SMS bình thường. Điều này có thể khiến bạn bị trừ tiền theo giá cước gửi tin nhắn SMS của nhà mạng bạn sử dụng.</string>
+    <string name="understood">Tôi hiểu. Cảm ơn</string>
+    <string name="test_msg">Xin chào. Đây là tin nhắn kiểm tra kết nối của app Forward SMS</string>
+</resources>

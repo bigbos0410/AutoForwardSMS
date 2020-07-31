@@ -1,11 +1,13 @@
 package com.ttk.lab.autoforwardsms.presentation.home;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.ttk.lab.autoforwardsms.Constants;
+import com.ttk.lab.autoforwardsms.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,9 +21,11 @@ import javax.net.ssl.HttpsURLConnection;
 public class HomePresenter implements IHomePresenter {
 
     private IHomeView homeView;
+    private Context mContext;
 
-    HomePresenter (IHomeView homeView){
+    HomePresenter (IHomeView homeView, Context context){
         this.homeView = homeView;
+        this.mContext = context;
     }
 
     @Override
@@ -50,7 +54,7 @@ public class HomePresenter implements IHomePresenter {
 
         @Override
         protected Boolean doInBackground(String... msgs) {
-            String msg = Uri.encode("Hello, this is test message from Forward sms application");
+            String msg = Uri.encode(mContext.getString(R.string.test_msg));
             String api = String.format(Constants.TELEGRAM.API, Constants.TELEGRAM.TOKEN, Constants.TELEGRAM.CHAT_ID, msg);
             try {
                 URL url = new URL(api);
@@ -108,14 +112,14 @@ public class HomePresenter implements IHomePresenter {
                     if (matcher.find()) {
                         return matcher.group(1);
                     } else {
-                        return "Error:Cannot found ChatID, you need chat to your Bot first";
+                        return "Error:" + mContext.getString(R.string.error_cannot_find_chat_id);
                     }
                 } else {
-                    return "Error:Token invalid";
+                    return "Error:" + mContext.getString(R.string.error_token_invalid);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                return "Error:" + e.toString();
+                return "Error:" + mContext.getString(R.string.error_internet_connection);
             }
         }
 
@@ -125,13 +129,11 @@ public class HomePresenter implements IHomePresenter {
             homeView.showLoading(false);
             if (s != null && !s.contains("Error:")) {
                 homeView.updateChatID(s);
-                homeView.enableTestTelegram(true);
-                homeView.showError(null);
+                homeView.showErrorToken(null);
             } else {
                 String error_log = s.split(":")[1];
                 homeView.updateChatID("");
-                homeView.showError(error_log);
-                homeView.enableTestTelegram(false);
+                homeView.showErrorToken(error_log);
             }
 
         }

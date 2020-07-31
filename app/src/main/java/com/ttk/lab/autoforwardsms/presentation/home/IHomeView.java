@@ -8,9 +8,7 @@ public interface IHomeView extends BaseView {
 
     void showLoading(boolean loading);
 
-    void showError (String content);
-
-    void enableTestTelegram(boolean enable);
+    void showErrorToken(String content);
 
     void showPhoneValid(boolean isValid);
 }
