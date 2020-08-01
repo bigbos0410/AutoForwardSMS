@@ -22,6 +22,8 @@ public class HomePresenter implements IHomePresenter {
 
     private IHomeView homeView;
     private Context mContext;
+    private final int TIMEOUT_CONNECT = 5000;
+    private final int RESPOND_CODE_SUCCESS = 200;
 
     HomePresenter (IHomeView homeView, Context context){
         this.homeView = homeView;
@@ -59,10 +61,11 @@ public class HomePresenter implements IHomePresenter {
             try {
                 URL url = new URL(api);
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-                conn.setConnectTimeout(5000);
+                conn.setConnectTimeout(TIMEOUT_CONNECT);
+                conn.setReadTimeout(TIMEOUT_CONNECT);
                 conn.setRequestMethod("POST");
                 conn.connect();
-                if (conn.getResponseCode() == 200) {
+                if (conn.getResponseCode() == RESPOND_CODE_SUCCESS) {
                     Log.d(Constants.TAG, "forward SMS via telegram success");
                     return true;
                 } else {
@@ -96,10 +99,11 @@ public class HomePresenter implements IHomePresenter {
             try {
                 URL url = new URL(api);
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-                conn.setConnectTimeout(5000);
+                conn.setConnectTimeout(TIMEOUT_CONNECT);
+                conn.setReadTimeout(TIMEOUT_CONNECT);
                 conn.setRequestMethod("POST");
                 conn.connect();
-                if (conn.getResponseCode() == 200) {
+                if (conn.getResponseCode() == RESPOND_CODE_SUCCESS) {
                     BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     StringBuilder sb = new StringBuilder();
                     String line;

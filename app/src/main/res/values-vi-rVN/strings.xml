@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="setting">Cài đặt</string>
-    <string name="send_to_telegram">Gửi đến Telegram</string>
-    <string name="send_to_phone_number">Gửi đến SĐT</string>
-    <string name="always_send_to_phone">Luôn gửi đến SĐT này.</string>
-    <string name="only_send_if_telegram_not_available">Chỉ gửi đến SĐT này khi không gửi được qua Telegram.</string>
+    <string name="send_to_telegram">Chuyển tiếp đến Telegram</string>
+    <string name="send_to_phone_number">Chuyển tiếp đến SĐT</string>
+    <string name="always_send_to_phone">Luôn chuyển tiếp đến SĐT này.</string>
+    <string name="only_send_if_telegram_not_available">Chỉ chuyển tiếp đến SĐT này khi Telegram không khả dụng.</string>
     <string name="more_option">Lựa chọn khác</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="test_tele_connect">Thử kết nối với Telegram</string>
@@ -20,4 +20,14 @@
     <string name="alert_sms_enable">Vui lòng đảm bảo thiết bạn có thể gửi tin nhắn SMS bình thường. Điều này có thể khiến bạn bị trừ tiền theo giá cước gửi tin nhắn SMS của nhà mạng bạn sử dụng.</string>
     <string name="understood">Tôi hiểu. Cảm ơn</string>
     <string name="test_msg">Xin chào. Đây là tin nhắn kiểm tra kết nối của app Forward SMS</string>
+    <string name="need_valid_token">Cần token hợp lệ</string>
+    <string name="need_valid_phone">Cần số điện thoại hợp lệ</string>
+    <string name="guide_1">Bước 1. Tìm @BotFather trên Telegram</string>
+    <string name="guide_2">Bước 2. Chat /start</string>
+    <string name="guide_3">Bước 3. Chat /newbot</string>
+    <string name="guide_4">Bước 4. Đặt tên cho chatbot của bạn. Ví dụ: ForwardSMS</string>
+    <string name="guide_5">Bước 5. Đặt id cho chatbot (phải kết thúc bằng từ \'bot\'). Ví dụ: forward_sms_bot</string>
+    <string name="guide_6">Bước 6. Gửi một tin nhắn bất kỳ cho bot</string>
+    <string name="guide_7">Bước 7. Nhập Token của bot cung cấp bởi @BotFather vào ô Token của app này</string>
+    <string name="guide_8">Bước 8. Thử kết nối với Telegram</string>
 </resources>
