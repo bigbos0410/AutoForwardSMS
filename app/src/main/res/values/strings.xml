@@ -39,4 +39,6 @@
     <string name="understood">I understand. Thanks</string>
     <string name="need_valid_token">Need valid token</string>
     <string name="need_valid_phone">Need valid phone number</string>
+
+    <string name="admod_home_activity" translatable="false">ca-app-pub-7142953456838380/3899326410</string>
 </resources>
