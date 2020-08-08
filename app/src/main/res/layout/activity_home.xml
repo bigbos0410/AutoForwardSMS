@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_screen"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.home.HomeView">
@@ -45,9 +45,10 @@
                     android:id="@+id/ll_tele"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/padding"
+                    android:layout_margin="12dp"
+                    android:background="@drawable/layout_border"
                     android:orientation="vertical"
-                    android:background="@drawable/layout_border">
+                    android:padding="12dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -57,48 +58,48 @@
 
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_weight="2"
                             android:layout_height="wrap_content"
+                            android:layout_weight="2"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/header_2"
                                 android:text="@string/send_to_telegram"
-                                android:textSize="@dimen/text_size_header_medium"/>
+                                android:textColor="@color/header_2"
+                                android:textSize="@dimen/text_size_header_medium" />
 
                             <TextView
                                 android:id="@+id/tele_connect_guide"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textColor="@color/colorPrimary"
-                                android:text="@string/how_to_connect_tele"
                                 android:onClick="connectTeleGuide"
-                                android:textSize="@dimen/text_size_content_medium"/>
+                                android:text="@string/how_to_connect_tele"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="@dimen/text_size_content_medium" />
                         </LinearLayout>
 
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/sw_tele"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
                     </LinearLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/edl_token"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:boxStrokeColor="@color/colorPrimary"
                         android:layout_marginTop="@dimen/space_element"
-                        app:boxStrokeWidth="0.5dp"
                         android:hint="@string/token"
-                        app:endIconMode="custom"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:boxStrokeWidth="0.5dp"
                         app:endIconDrawable="@drawable/ic_edit"
-                        app:helperTextTextColor="@color/colorPrimary"
+                        app:endIconMode="custom"
                         app:errorEnabled="true"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        app:helperTextTextColor="@color/colorPrimary">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_token"
@@ -108,20 +109,19 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_element"
-                        app:boxStrokeWidth="0.5dp"
-                        app:boxStrokeWidthFocused="1dp"
                         android:hint="@string/chat_id"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        app:boxStrokeWidth="0.5dp"
+                        app:boxStrokeWidthFocused="1dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/ed_chat_id"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
-                            android:inputType="number"/>
+                            android:inputType="number" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,8 +133,6 @@
                         app:icon="@drawable/telegram_ico"
                         app:iconTint="@null"
                         android:layout_marginTop="@dimen/space_element"
-                        android:layout_marginStart="@dimen/padding"
-                        android:layout_marginEnd="@dimen/padding"
                         android:padding="@dimen/space_element"
                         android:text="@string/test_tele_connect"
                         android:textSize="@dimen/text_size_button"
@@ -142,7 +140,7 @@
                         app:iconGravity="textEnd"
                         app:iconSize="24dp"
                         android:onClick="testTelegramConnect"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"/>
+                        style="@style/Widget.MaterialComponents.Button.Icon"/>
 
                 </LinearLayout>
 
@@ -151,9 +149,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/padding"
-                    android:padding="@dimen/padding"
+                    android:padding="@dimen/space_element"
                     android:orientation="vertical"
-                    app:layout_constraintTop_toBottomOf="@id/ll_tele"
+                    android:layout_margin="@dimen/space_element"
                     android:background="@drawable/layout_border">
 
                     <LinearLayout

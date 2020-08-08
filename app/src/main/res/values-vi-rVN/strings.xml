@@ -13,7 +13,7 @@
     <string name="how_to_connect_tele">Kết nối với Telegram như thế nào?</string>
     <string name="error_token_invalid">Token không hợp lệ</string>
     <string name="error_internet_connection">Kiểm tra kết nối internet</string>
-    <string name="error_cannot_find_chat_id">Không tìm được ChatID, bạn cần gửi 1 tin nhắn bất kỳ cho bot trước</string>
+    <string name="error_cannot_find_chat_id">Không tìm được ChatID, hãy gửi 1 tin nhắn cho Bot và thử lại</string>
     <string name="go_to_setting">Vào Cài đặt</string>
     <string name="permission_request_failed_noti">"Ứng dụng này cần quyền đọc và gửi tin nhắn. Chúng tôi cam kết tin nhắn SMS của bạn sẽ không được chuyển tiếp tới bất kì đâu ngoài tầm kiểm soát của bạn.
         \n\nVào Cài đặt > Quyền > Tin nhắn SMS > Cho phép"</string>

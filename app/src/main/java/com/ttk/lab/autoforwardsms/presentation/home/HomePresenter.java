@@ -47,6 +47,7 @@ public class HomePresenter implements IHomePresenter {
         homeView.showPhoneValid(matcher.find());
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class checkTelegramConnect extends AsyncTask<String, Void, Boolean> {
         @Override
         protected void onPreExecute() {
@@ -116,6 +117,7 @@ public class HomePresenter implements IHomePresenter {
                     if (matcher.find()) {
                         return matcher.group(1);
                     } else {
+                        Log.d(Constants.TAG, sb.toString());
                         return "Error:" + mContext.getString(R.string.error_cannot_find_chat_id);
                     }
                 } else {

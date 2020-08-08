@@ -334,7 +334,9 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
         switch (id) {
             case R.id.ed_token:
                 if (!b) {
-                    homePresenter.getChatID(String.valueOf(mBinding.edToken.getText()));
+                    if (!String.valueOf(mBinding.edToken.getText()).equals("")) {
+                        homePresenter.getChatID(String.valueOf(mBinding.edToken.getText()));
+                    }
                     mBinding.edlToken.setEndIconDrawable(R.drawable.ic_edit);
                 } else {
                     mBinding.edlToken.setEndIconDrawable(R.drawable.ic_check);
@@ -342,7 +344,9 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
                 break;
             case R.id.ed_phone_number:
                 if (!b) {
-                    homePresenter.checkValidPhoneNumber(String.valueOf(mBinding.edPhoneNumber.getText()));
+                    if (!String.valueOf(mBinding.edPhoneNumber.getText()).equals("")) {
+                        homePresenter.checkValidPhoneNumber(String.valueOf(mBinding.edPhoneNumber.getText()));
+                    }
                     mBinding.edlPhoneNumber.setEndIconDrawable(R.drawable.ic_edit);
                 } else {
                     mBinding.edlPhoneNumber.setEndIconDrawable(R.drawable.ic_check);
