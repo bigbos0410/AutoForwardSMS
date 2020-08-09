@@ -48,7 +48,7 @@ public class HomePresenter implements IHomePresenter {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private class checkTelegramConnect extends AsyncTask<String, Void, Boolean> {
+    private class checkTelegramConnect extends AsyncTask<String, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -56,7 +56,7 @@ public class HomePresenter implements IHomePresenter {
         }
 
         @Override
-        protected Boolean doInBackground(String... msgs) {
+        protected Void doInBackground(String... msgs) {
             String msg = Uri.encode(mContext.getString(R.string.test_msg));
             String api = String.format(Constants.TELEGRAM.API, msgs[0], msgs[1], msg);
             try {
@@ -68,20 +68,20 @@ public class HomePresenter implements IHomePresenter {
                 conn.connect();
                 if (conn.getResponseCode() == RESPOND_CODE_SUCCESS) {
                     Log.d(Constants.TAG, "forward SMS via telegram success");
-                    return true;
+                    homeView.showNotification(Constants.NOTI_TYPE.SUCCESS, "Connect with Telegram success");
                 } else {
                     Log.d(Constants.TAG, conn.getResponseCode() + " " + conn.getResponseMessage());
-                    return false;
+                    homeView.showNotification(Constants.NOTI_TYPE.ERROR, conn.getResponseCode() + " " + conn.getResponseMessage());
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                return false;
             }
+            return null;
         }
 
         @Override
-        protected void onPostExecute(Boolean result) {
-            super.onPostExecute(result);
+        protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
             homeView.showLoading(false);
         }
     }
@@ -118,30 +118,23 @@ public class HomePresenter implements IHomePresenter {
                         return matcher.group(1);
                     } else {
                         Log.d(Constants.TAG, sb.toString());
-                        return "Error:" + mContext.getString(R.string.error_cannot_find_chat_id);
+                        homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.error_cannot_find_chat_id));
                     }
                 } else {
-                    return "Error:" + mContext.getString(R.string.error_token_invalid);
+                    homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.error_token_invalid));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                return "Error:" + mContext.getString(R.string.error_internet_connection);
+                homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.error_internet_connection));
             }
+            return "";
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             homeView.showLoading(false);
-            if (s != null && !s.contains("Error:")) {
-                homeView.updateChatID(s);
-                homeView.showErrorToken(null);
-            } else {
-                String error_log = s.split(":")[1];
-                homeView.updateChatID("");
-                homeView.showErrorToken(error_log);
-            }
-
+            homeView.updateChatID(s);
         }
     }
 }

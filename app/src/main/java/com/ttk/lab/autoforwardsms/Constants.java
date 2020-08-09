@@ -19,4 +19,10 @@ public interface Constants {
         String ENABLE_TELE = "enable_tele";
         String ENABLE_PHONE = "enable_phone";
     }
+
+    interface NOTI_TYPE {
+        int ERROR = 0;
+        int WARNING = 1;
+        int SUCCESS = 2;
+    }
 }

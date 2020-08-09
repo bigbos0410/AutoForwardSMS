@@ -8,7 +8,7 @@ public interface IHomeView extends BaseView {
 
     void showLoading(boolean loading);
 
-    void showErrorToken(String content);
-
     void showPhoneValid(boolean isValid);
+
+    void showNotification(int code, String msg);
 }

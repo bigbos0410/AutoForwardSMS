@@ -8,4 +8,8 @@
     <color name="button_green">#F9A825</color>
 
     <color name="bubble_chat">#FBC02D</color>
+
+    <color name="noti_error">#F4511E</color>
+    <color name="noti_warning">#FFB300</color>
+    <color name="noti_success">#7CB342</color>
 </resources>

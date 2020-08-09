@@ -2,20 +2,20 @@ package com.ttk.lab.autoforwardsms.presentation.home;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextPaint;
-import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +29,7 @@ import androidx.databinding.DataBindingUtil;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.tapadoo.alerter.Alerter;
 import com.ttk.lab.autoforwardsms.Constants;
 import com.ttk.lab.autoforwardsms.PreferenceHelper;
 import com.ttk.lab.autoforwardsms.R;
@@ -51,6 +52,11 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         initLayout();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     void initLayout(){
@@ -94,35 +100,6 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
                 mBinding.edPhoneNumber.selectAll();
             }
         });
-
-        mBinding.edToken.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                showErrorToken(null);
-                mBinding.edlToken.setHelperTextEnabled(false);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-
-        mBinding.edPhoneNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                showErrorPhone(null);
-                mBinding.edlPhoneNumber.setHelperTextEnabled(false);
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-        //new ForwardSmsAsyncTask(this).execute("haha");
     }
 
     boolean checkPermission () {
@@ -178,8 +155,7 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
     public void updateChatID(String chat_id) {
         if (!chat_id.isEmpty()) {
             mBinding.edChatId.setText(chat_id);
-            mBinding.edlToken.setHelperTextEnabled(true);
-            mBinding.edlToken.setHelperText(getString(R.string.saved));
+            showNotification(Constants.NOTI_TYPE.SUCCESS, "Get ChatID success. Saved");
             PreferenceHelper.putString(mPreferences, Constants.PREF.TOKEN_PREF, String.valueOf(mBinding.edToken.getText()));
             PreferenceHelper.putString(mPreferences, Constants.PREF.CHAT_ID_PREF, String.valueOf(mBinding.edChatId.getText()));
             enableTestTelegram(true);
@@ -210,31 +186,10 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
     @Override
     public void showPhoneValid(boolean isValid) {
         if (isValid) {
-            showErrorPhone(null);
-            mBinding.edlPhoneNumber.setHelperTextEnabled(true);
-            mBinding.edlPhoneNumber.setHelperText(getString(R.string.saved));
+            showNotification(Constants.NOTI_TYPE.SUCCESS, "Save phone number");
             PreferenceHelper.putString(mPreferences, Constants.PREF.PHONE_NUMBER_PREF, String.valueOf(mBinding.edPhoneNumber.getText()));
         } else {
-            showErrorPhone(getString(R.string.invalid_phone_number_error));
-        }
-    }
-
-    @Override
-    public void showErrorToken(String content) {
-        if (content != null && !content.isEmpty()) {
-            mBinding.edlToken.setErrorEnabled(true);
-            mBinding.edlToken.setError(content);
-        } else {
-            mBinding.edlToken.setErrorEnabled(false);
-        }
-    }
-
-    void showErrorPhone(String content) {
-        if (content != null && !content.isEmpty()) {
-            mBinding.edlPhoneNumber.setErrorEnabled(true);
-            mBinding.edlPhoneNumber.setError(content);
-        } else {
-            mBinding.edlPhoneNumber.setErrorEnabled(false);
+            showNotification(Constants.NOTI_TYPE.ERROR, getString(R.string.invalid_phone_number_error));
         }
     }
 
@@ -288,7 +243,7 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
                         String token = mPreferences.getString(Constants.PREF.TOKEN_PREF, "");
                         if (token.equals("")) {
                             mBinding.swTele.setChecked(false);
-                            showErrorToken(getString(R.string.need_valid_token));
+                            showNotification(Constants.NOTI_TYPE.WARNING, getString(R.string.need_valid_token));
                         } else {
                             PreferenceHelper.putBoolean(mPreferences, Constants.PREF.ENABLE_TELE, true);
                             mBinding.edToken.setText(token);
@@ -308,7 +263,7 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
                         String phone_number = mPreferences.getString(Constants.PREF.PHONE_NUMBER_PREF, "");
                         if (phone_number.equals("")) {
                             mBinding.swPhone.setChecked(false);
-                            showErrorPhone(getString(R.string.need_valid_phone));
+                            showNotification(Constants.NOTI_TYPE.WARNING, getString(R.string.need_valid_phone));
                         } else {
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeView.this);
                             alertDialog.setMessage(getString(R.string.alert_sms_enable)).setPositiveButton(getString(R.string.understood), null);
@@ -332,6 +287,13 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
     @Override
     public void onFocusChange(View view, boolean b) {
         int id = view.getId();
+        showAd(!b);
+        if (!b) {
+            InputMethodManager imm =  (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        }
         switch (id) {
             case R.id.ed_token:
                 if (!b) {
@@ -353,6 +315,33 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
                     mBinding.edlPhoneNumber.setEndIconDrawable(R.drawable.ic_check);
                 }
                 break;
+        }
+    }
+
+    @Override
+    public void showNotification(int code, String msg) {
+        int color;
+        switch (code) {
+            case Constants.NOTI_TYPE.ERROR:
+                color = R.color.noti_error;
+                break;
+            case Constants.NOTI_TYPE.SUCCESS:
+                color = R.color.noti_success;
+                break;
+            default:
+                color = R.color.noti_warning;
+        }
+        Alerter.create(this)
+                .setText(msg)
+                .setBackgroundColor(color)
+                .show();
+    }
+
+    void showAd(boolean show) {
+        if (show) {
+            mBinding.adView.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.adView.setVisibility(View.GONE);
         }
     }
 }

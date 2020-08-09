@@ -13,12 +13,11 @@
         tools:ignore="AllowBackup">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7142953456838380~9456450016"/>
+            android:value="@string/admob_app_test"/>
 
         <activity android:name=".presentation.guide.GuideActivity"></activity>
         <activity
-            android:name=".presentation.home.HomeView"
-            android:windowSoftInputMode="adjustPan|stateHidden">
+            android:name=".presentation.home.HomeView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
