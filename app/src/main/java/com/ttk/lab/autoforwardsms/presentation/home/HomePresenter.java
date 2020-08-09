@@ -36,8 +36,8 @@ public class HomePresenter implements IHomePresenter {
     }
 
     @Override
-    public void testTelegramConnect() {
-        new checkTelegramConnect().execute("sdfghjkl");
+    public void testTelegramConnect(String[] args) {
+        new checkTelegramConnect().execute(args);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class HomePresenter implements IHomePresenter {
         @Override
         protected Boolean doInBackground(String... msgs) {
             String msg = Uri.encode(mContext.getString(R.string.test_msg));
-            String api = String.format(Constants.TELEGRAM.API, Constants.TELEGRAM.TOKEN, Constants.TELEGRAM.CHAT_ID, msg);
+            String api = String.format(Constants.TELEGRAM.API, msgs[0], msgs[1], msg);
             try {
                 URL url = new URL(api);
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();

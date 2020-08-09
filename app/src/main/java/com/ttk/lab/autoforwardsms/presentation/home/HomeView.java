@@ -165,7 +165,8 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
 
 
     public void testTelegramConnect(View view){
-        homePresenter.testTelegramConnect();
+        String[] args = {String.valueOf(mBinding.edToken.getText()), String.valueOf(mBinding.edChatId.getText())};
+        homePresenter.testTelegramConnect(args);
     }
 
     public void connectTeleGuide(View view){

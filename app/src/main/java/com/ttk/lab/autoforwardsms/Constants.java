@@ -7,15 +7,12 @@ public interface Constants {
     interface TELEGRAM {
         String UPDATE_API = "https://api.telegram.org/bot%s/getUpdates";
         String API = "https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s";
-        String TOKEN = "1195608590:AAHg5bQlpEslaY_KKbgRT9pnLBotbUnJsfA";
-        String CHAT_ID = "944674791";
         String CHAT_ID_PATTERN = "\"id\":(.+?),";
     }
 
     interface PREF {
         String PREF_NAME = "auto_forward_sms";
         String TOKEN_PREF = "token";
-        String VALID_TOKEN = "valid_token";
         String CHAT_ID_PREF = "chat_id";
         String PHONE_NUMBER_PREF = "phone_number";
         String PHONE_OPTION = "phone_option";

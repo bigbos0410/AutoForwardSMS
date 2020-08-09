@@ -6,7 +6,7 @@ public interface IHomePresenter extends BasePresenter {
 
     void getChatID(String token);
 
-    void testTelegramConnect();
+    void testTelegramConnect(String[] args);
 
     void checkValidPhoneNumber(String phone);
 }
