@@ -59,25 +59,25 @@ public class ForwardSmsAsyncTask extends AsyncTask<String, Void, Void> {
                 if (conn.getResponseCode() == 200) {
                     Log.d(Constants.TAG, "Forward SMS via telegram success");
                     if (enable_phone && phone_option == 1) {
-                        sendToPhone(phone_number, msg);
+                        sendToPhone(phone_number, msgs[0]);
                     }
                 } else {
                     Log.d(Constants.TAG, "Forward SMS via telegram failed, "
                             + conn.getResponseCode() + " " + conn.getResponseMessage());
                     if (enable_phone) {
-                        sendToPhone(phone_number, msg);
+                        sendToPhone(phone_number, msgs[0]);
                     }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.d(Constants.TAG, "Forward SMS via telegram failed, " + e);
                 if (enable_phone) {
-                    sendToPhone(phone_number, msg);
+                    sendToPhone(phone_number, msgs[0]);
                 }
             }
         } else {
             if (enable_phone) {
-                sendToPhone(phone_number, msg);
+                sendToPhone(phone_number, msgs[0]);
             }
         }
         return null;

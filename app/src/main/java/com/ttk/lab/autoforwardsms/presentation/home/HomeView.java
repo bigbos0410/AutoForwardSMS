@@ -104,13 +104,18 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
 
     boolean checkPermission () {
         if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED) {
+                this, Manifest.permission.RECEIVE_SMS) == PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(
+                this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
             return true;
         } else if (shouldShowRequestPermissionRationale(Manifest.permission.RECEIVE_SMS)) {
             showDialogOpenSetting();
             return false;
+        } else if (shouldShowRequestPermissionRationale(Manifest.permission.SEND_SMS)) {
+            showDialogOpenSetting();
+            return false;
         } else {
-            requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS },
+            requestPermissions(new String[] { Manifest.permission.RECEIVE_SMS, Manifest.permission.SEND_SMS },
                     99);
             return false;
         }
