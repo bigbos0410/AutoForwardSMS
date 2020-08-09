@@ -186,10 +186,10 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
     @Override
     public void showPhoneValid(boolean isValid) {
         if (isValid) {
-            showNotification(Constants.NOTI_TYPE.SUCCESS, "Save phone number");
+            showNotification(Constants.NOTI_TYPE.SUCCESS, getString(R.string.noti_phone_save_phone));
             PreferenceHelper.putString(mPreferences, Constants.PREF.PHONE_NUMBER_PREF, String.valueOf(mBinding.edPhoneNumber.getText()));
         } else {
-            showNotification(Constants.NOTI_TYPE.ERROR, getString(R.string.invalid_phone_number_error));
+            showNotification(Constants.NOTI_TYPE.ERROR, getString(R.string.noti_phone_invalid_phone));
         }
     }
 
@@ -243,7 +243,7 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
                         String token = mPreferences.getString(Constants.PREF.TOKEN_PREF, "");
                         if (token.equals("")) {
                             mBinding.swTele.setChecked(false);
-                            showNotification(Constants.NOTI_TYPE.WARNING, getString(R.string.need_valid_token));
+                            showNotification(Constants.NOTI_TYPE.WARNING, getString(R.string.noti_tele_need_valid_token));
                         } else {
                             PreferenceHelper.putBoolean(mPreferences, Constants.PREF.ENABLE_TELE, true);
                             mBinding.edToken.setText(token);
@@ -263,7 +263,7 @@ public class HomeView extends AppCompatActivity implements IHomeView, CompoundBu
                         String phone_number = mPreferences.getString(Constants.PREF.PHONE_NUMBER_PREF, "");
                         if (phone_number.equals("")) {
                             mBinding.swPhone.setChecked(false);
-                            showNotification(Constants.NOTI_TYPE.WARNING, getString(R.string.need_valid_phone));
+                            showNotification(Constants.NOTI_TYPE.WARNING, getString(R.string.noti_phone_need_valid_phone));
                         } else {
                             AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeView.this);
                             alertDialog.setMessage(getString(R.string.alert_sms_enable)).setPositiveButton(getString(R.string.understood), null);

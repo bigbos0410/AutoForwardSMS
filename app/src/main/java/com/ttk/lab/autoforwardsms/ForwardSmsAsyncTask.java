@@ -87,8 +87,8 @@ public class ForwardSmsAsyncTask extends AsyncTask<String, Void, Void> {
     private void sendToPhone(String phone_number, String msg) {
         if (ContextCompat.checkSelfPermission(
                 mContext, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-//            SmsManager smsManager = SmsManager.getDefault();
-//            smsManager.sendTextMessage(phone_number, null, msg, null, null);
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phone_number, null, msg, null, null);
             Log.d(Constants.TAG, "Forward SMS via phone number success.");
         } else {
             Log.d(Constants.TAG, "Forward SMS via phone failed. Missing permission");

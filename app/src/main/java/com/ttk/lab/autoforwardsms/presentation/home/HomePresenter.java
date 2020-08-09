@@ -68,7 +68,7 @@ public class HomePresenter implements IHomePresenter {
                 conn.connect();
                 if (conn.getResponseCode() == RESPOND_CODE_SUCCESS) {
                     Log.d(Constants.TAG, "forward SMS via telegram success");
-                    homeView.showNotification(Constants.NOTI_TYPE.SUCCESS, "Connect with Telegram success");
+                    homeView.showNotification(Constants.NOTI_TYPE.SUCCESS, mContext.getString(R.string.noti_tele_test_connect_success));
                 } else {
                     Log.d(Constants.TAG, conn.getResponseCode() + " " + conn.getResponseMessage());
                     homeView.showNotification(Constants.NOTI_TYPE.ERROR, conn.getResponseCode() + " " + conn.getResponseMessage());
@@ -118,14 +118,14 @@ public class HomePresenter implements IHomePresenter {
                         return matcher.group(1);
                     } else {
                         Log.d(Constants.TAG, sb.toString());
-                        homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.error_cannot_find_chat_id));
+                        homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.noti_tele_cannot_find_chat_id));
                     }
                 } else {
-                    homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.error_token_invalid));
+                    homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.noti_tele_token_invalid));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.error_internet_connection));
+                homeView.showNotification(Constants.NOTI_TYPE.ERROR, mContext.getString(R.string.noti_tele_check_internet_connection));
             }
             return "";
         }
