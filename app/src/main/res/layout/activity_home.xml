@@ -223,6 +223,6 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             ads:adSize="BANNER"
-            ads:adUnitId="@string/admob_home_activity_test" />
+            ads:adUnitId="@string/admob_home_activity" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

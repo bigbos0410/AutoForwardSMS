@@ -13,7 +13,7 @@
         tools:ignore="AllowBackup">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_test"/>
+            android:value="@string/admob_app"/>
 
         <activity android:name=".presentation.guide.GuideActivity"></activity>
         <activity

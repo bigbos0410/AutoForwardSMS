@@ -1,7 +1,6 @@
 package com.ttk.lab.autoforwardsms;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;

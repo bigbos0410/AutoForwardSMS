@@ -1,0 +1,4 @@
+<resources>
+    <string name="admob_app" translatable="false">ca-app-pub-7142953456838380~9456450016</string>
+    <string name="admob_home_activity" translatable="false">ca-app-pub-7142953456838380/3899326410</string>
+</resources>
